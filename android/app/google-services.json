@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "371036177962",
+    "project_id": "chatter-47723",
+    "storage_bucket": "chatter-47723.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:371036177962:android:c89f0c1ea0a5d6a7f3a553",
+        "android_client_info": {
+          "package_name": "com.saraf.chatter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "371036177962-hp26vjeltfde8k1ug3pti9mbbisr99ib.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD69ljF4I_U0wzHDKI1Stnhk1qgUQbNDe0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "371036177962-hp26vjeltfde8k1ug3pti9mbbisr99ib.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

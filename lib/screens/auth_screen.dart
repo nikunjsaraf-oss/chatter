@@ -44,12 +44,14 @@ class _AuthScreenState extends State<AuthScreen> {
           password: password,
         );
 
-        final StorageReference ref = FirebaseStorage.instance
+        final StorageReference reference = FirebaseStorage.instance
             .ref()
             .child('userImages')
             .child(authResult.user.uid + '.jpg');
 
-        await ref.putFile(userImage).onComplete;
+        await reference.putFile(userImage).onComplete;
+
+        final url = await reference.getDownloadURL();
 
         await Firestore.instance
             .collection('users')
@@ -57,6 +59,7 @@ class _AuthScreenState extends State<AuthScreen> {
             .setData({
           'userName': userName,
           'email': email,
+          'imageUrl': url,
         });
       }
     } on PlatformException catch (error) {

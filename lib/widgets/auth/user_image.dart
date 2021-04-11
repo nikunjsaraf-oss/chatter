@@ -12,8 +12,9 @@ class UserImage extends StatefulWidget {
 
 class _UserImageState extends State<UserImage> {
   File _pickedImage;
-  void pickImage(ImageSource imageSource) async {
-    final File image = await ImagePicker.pickImage(source: imageSource);
+  void pickImage() async {
+    final File image = await ImagePicker.pickImage(source: ImageSource.camera);
+    print(image);
     setState(() {
       _pickedImage = image;
     });
@@ -32,26 +33,11 @@ class _UserImageState extends State<UserImage> {
               : FileImage(_pickedImage),
           radius: 40,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FlatButton.icon(
-              textColor: Theme.of(context).primaryColor,
-              icon: Icon(Icons.camera),
-              onPressed: () {
-                pickImage(ImageSource.camera);
-              },
-              label: Text('Click an Image'),
-            ),
-            FlatButton.icon(
-              textColor: Theme.of(context).primaryColor,
-              icon: Icon(Icons.image),
-              onPressed: () {
-                pickImage(ImageSource.gallery);
-              },
-              label: Text('Add Image'),
-            ),
-          ],
+        FlatButton.icon(
+          textColor: Theme.of(context).primaryColor,
+          icon: Icon(Icons.camera),
+          onPressed: pickImage,
+          label: Text('Click an Image'),
         ),
       ],
     );

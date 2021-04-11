@@ -1,8 +1,14 @@
+import 'package:chatter/widgets/auth/user_image.dart';
 import 'package:flutter/material.dart';
 
 class AuthForm extends StatefulWidget {
-  final void Function(String email, String password, String userName,
-      bool isLogin, BuildContext context) submitFunction;
+  final void Function(
+    String email,
+    String password,
+    String userName,
+    bool isLogin,
+    BuildContext context,
+  ) submitFunction;
   final bool isLoading;
   AuthForm(this.submitFunction, this.isLoading);
   @override
@@ -51,6 +57,7 @@ class _AuthFormState extends State<AuthForm> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                if (!_isLogin) UserImage(),
                 TextFormField(
                   key: ValueKey('email'),
                   validator: (value) {

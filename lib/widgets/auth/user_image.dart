@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class UserImage extends StatefulWidget {
+  final Function(File pickedImage) imagePickedFunction;
+  UserImage(this.imagePickedFunction);
   @override
   _UserImageState createState() => _UserImageState();
 }
@@ -15,6 +17,7 @@ class _UserImageState extends State<UserImage> {
     setState(() {
       _pickedImage = image;
     });
+    widget.imagePickedFunction(_pickedImage);
   }
 
   @override

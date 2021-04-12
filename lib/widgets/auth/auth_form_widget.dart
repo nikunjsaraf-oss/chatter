@@ -146,6 +146,8 @@ class _AuthFormState extends State<AuthForm> {
                   },
                   style: ElevatedButton.styleFrom(
                     onPrimary: Theme.of(context).primaryColor,
+                    primary: Colors.white,
+                    elevation: 0,
                   ),
                   child: Text(_isLogin
                       ? 'Create new account'

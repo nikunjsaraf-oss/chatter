@@ -35,7 +35,7 @@ class _AuthFormState extends State<AuthForm> {
     FocusScope.of(context).unfocus(); // to close the keyboard
 
     if (_userImageFile == null && !_isLogin) {
-      Scaffold.of(context).showSnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: Theme.of(context).errorColor,
           content: Text(
@@ -133,18 +133,20 @@ class _AuthFormState extends State<AuthForm> {
                 ),
                 if (widget.isLoading) CircularProgressIndicator(),
                 if (!widget.isLoading)
-                  RaisedButton(
+                  ElevatedButton(
                     onPressed: _submit,
                     child: Text(_isLogin ? 'Login' : 'Signup'),
                   ),
-                FlatButton(
+                ElevatedButton(
                   onPressed: () {
                     setState(() {
                       _isLogin = !_isLogin;
                     });
                     FocusScope.of(context).unfocus(); // to close
                   },
-                  textColor: Theme.of(context).primaryColor,
+                  style: ElevatedButton.styleFrom(
+                    onPrimary: Theme.of(context).primaryColor,
+                  ),
                   child: Text(_isLogin
                       ? 'Create new account'
                       : 'I already have an account.'),

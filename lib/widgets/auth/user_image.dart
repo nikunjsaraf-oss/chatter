@@ -13,14 +13,15 @@ class UserImage extends StatefulWidget {
 class _UserImageState extends State<UserImage> {
   File _pickedImage;
   void pickImage() async {
-    final File image = await ImagePicker.pickImage(
+    final ImagePicker picker = ImagePicker();
+    final pickedImage = await picker.getImage(
       source: ImageSource.camera,
       imageQuality: 50,
       maxWidth: 150,
     );
-    print(image);
+    final imageFile = File(pickedImage.path);
     setState(() {
-      _pickedImage = image;
+      _pickedImage = imageFile;
     });
     widget.imagePickedFunction(_pickedImage);
   }
@@ -37,8 +38,10 @@ class _UserImageState extends State<UserImage> {
               : FileImage(_pickedImage),
           radius: 40,
         ),
-        FlatButton.icon(
-          textColor: Theme.of(context).primaryColor,
+        TextButton.icon(
+          style: TextButton.styleFrom(
+            primary: Theme.of(context).primaryColor,
+          ),
           icon: Icon(Icons.camera),
           onPressed: pickImage,
           label: Text('Click an Image'),

@@ -21,11 +21,11 @@ class _AuthScreenState extends State<AuthScreen> {
     String email,
     String password,
     String userName,
-    File userImage,
+    File image,
     bool isLogin,
     BuildContext context,
   ) async {
-    AuthResult authResult;
+    UserCredential authResult;
 
     try {
       setState(() {
@@ -44,19 +44,19 @@ class _AuthScreenState extends State<AuthScreen> {
           password: password,
         );
 
-        final StorageReference reference = FirebaseStorage.instance
+        final ref = FirebaseStorage.instance
             .ref()
-            .child('userImages')
+            .child('user_image')
             .child(authResult.user.uid + '.jpg');
 
-        await reference.putFile(userImage).onComplete;
+        await ref.putFile(image);
 
-        final url = await reference.getDownloadURL();
+        final url = await ref.getDownloadURL();
 
-        await Firestore.instance
+        await FirebaseFirestore.instance
             .collection('users')
-            .document(authResult.user.uid)
-            .setData({
+            .doc(authResult.user.uid)
+            .set({
           'userName': userName,
           'email': email,
           'imageUrl': url,
@@ -68,7 +68,7 @@ class _AuthScreenState extends State<AuthScreen> {
         message = error.message;
       }
 
-      Scaffold.of(context).showSnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: Theme.of(context).errorColor,
           content: Text(

@@ -11,6 +11,7 @@ class ChatScreen extends StatelessWidget {
         title: Text('Chatter'),
         actions: [
           DropdownButton(
+            underline: Container(),
             items: [
               DropdownMenuItem(
                 child: Container(

@@ -81,6 +81,9 @@ class _AuthFormState extends State<AuthForm> {
               children: [
                 if (!_isLogin) UserImage(_pickedImage),
                 TextFormField(
+                  autocorrect: false,
+                  textCapitalization: TextCapitalization.none,
+                  enableSuggestions: false,
                   key: ValueKey('email'),
                   validator: (value) {
                     if (!validateEmail(value)) {
@@ -96,6 +99,9 @@ class _AuthFormState extends State<AuthForm> {
                 ),
                 if (!_isLogin)
                   TextFormField(
+                    autocorrect: true,
+                    textCapitalization: TextCapitalization.words,
+                    enableSuggestions: true,
                     key: ValueKey('username'),
                     onSaved: (value) {
                       _userName = value;
